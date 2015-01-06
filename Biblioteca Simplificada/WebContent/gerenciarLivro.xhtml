@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<title>Gerenciador de Livros</title>
+</h:head>
+<h:body>
+<h1>Gerenciador de Livros</h1>
+<h:form>
+ID: <h:inputText value="#{livroController.livro.id}"/><br/>
+Título <h:inputText value="#{livroController.livro.titulo}"/><br/>
+Código Barra: <h:inputText value="#{livroController.livro.codigoBarra}"/><br/>
+Estante: <h:inputText value="#{livroController.livro.estante}"/><br/>
+Exemplares: <h:inputText value="#{livroController.livro.exemplares}"/><br/>
+Disponíveis: <h:inputText value="#{livroController.livro.disponiveis}"/><br/>
+Ano: <h:inputText value="#{livroController.livro.ano}"/><br/>
+Volume: <h:inputText value="#{livroController.livro.volume}"/><br/>
+Edição: <h:inputText value="#{livroController.livro.edicao}"/><br/>
+<h:commandButton action="#{livroController.adicionarLivro}" value="Inserir Novo Livro"/>
+<h:commandButton action="#{livroController.alterarLivro}" value="Alterar Livro"/>
+<br/>
+<h:commandLink action="index.xhtml" value="Voltar"/>
+</h:form>
+</h:body>
+</html>
