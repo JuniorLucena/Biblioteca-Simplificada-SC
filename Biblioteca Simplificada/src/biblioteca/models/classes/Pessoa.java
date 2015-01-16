@@ -1,9 +1,12 @@
 package biblioteca.models.classes;
 
+
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="pessoas")
@@ -13,6 +16,8 @@ public class Pessoa {
 	private Long cpf;
 	private String nome;
 	private String telefone;
+	
+	public Pessoa(){}
 	
 	@Id
 	@GeneratedValue
@@ -44,4 +49,5 @@ public class Pessoa {
 		this.telefone = telefone;
 	}
 
+		
 }

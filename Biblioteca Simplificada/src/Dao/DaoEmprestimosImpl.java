@@ -1,14 +1,22 @@
 package Dao;
 
 import org.hibernate.Transaction;
+
+
+
+
+
 import java.util.List;
+
 import org.hibernate.Session;
 
-
 import biblioteca.models.classes.Emprestimo;
+import biblioteca.models.classes.Livro;
+import biblioteca.models.classes.Pessoa;
+
 
 public class DaoEmprestimosImpl implements DaoEmprestimo{
-	
+
 	public void save(Emprestimo emprestimo) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction t = session.beginTransaction();
@@ -42,4 +50,7 @@ public class DaoEmprestimosImpl implements DaoEmprestimo{
 		session.update(emprestimo);
 		t.commit();
 		}
+	
+	
+	
 }

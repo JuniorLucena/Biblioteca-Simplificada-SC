@@ -1,0 +1,20 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Apagar autor</ui:define>
+<ui:define name="corpo">
+  <h:form>
+    <b:panel look="danger">
+      <f:facet name="heading">Apagar Autor</f:facet>
+      Deseja realmente apagar a autor #{autorBean.autor.nome}? Essa ação não pode ser desfeita.
+      <f:facet name="footer">
+        <b:commandButton value="Cancelar" action="listar.xhtml" />
+        <b:commandButton look="success" value="Apagar" action="#{autorBean.apagar}" styleClass="pull-right" />
+      </f:facet>
+    </b:panel>
+  </h:form>
+</ui:define>
+</ui:composition>

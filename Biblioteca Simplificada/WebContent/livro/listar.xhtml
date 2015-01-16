@@ -1,0 +1,52 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Livros</ui:define>
+<ui:define name="corpo">
+<h:form>
+  <b:panel>
+  	<f:facet name="heading">Lista de Livros</f:facet>
+  	
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Estante</th>
+          <th>Exemplares</th>
+          <th>Disponiveis</th>
+          <th>Ano</th>
+          <th>Volume</th>
+          <th>Edição</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <ui:repeat var="livro" value="#{livroController.listarLivros}">
+          <tr>
+            <td><h:outputText value="#{livro.titulo}"/></td>
+            <td><h:outputText value="#{livro.estante}"/></td>
+            <td><h:outputText value="#{livro.exemplares}"/></td>
+            <td><h:outputText value="#{livro.disponiveis}"/></td>
+            <td><h:outputText value="#{livro.ano}"/></td>
+            <td><h:outputText value="#{livro.volume}"/></td>
+            <td><h:outputText value="#{livro.edicao}"/></td>
+            <td>
+              <b:buttonGroup size="sm">
+                <b:commandButton value="Editar" action="#{livroController.alterarLivro}"/>
+                <b:commandButton value="Apagar" action="#{livroController.excluirLivro}"/>
+              </b:buttonGroup>
+            </td>
+          </tr>
+        </ui:repeat>
+      </tbody>
+    </table>
+    <div class="text-right">
+	  <b:commandButton look="primary" value="Adicionar" action="#{livroController.prepararAdicionarLivro}"/>
+	</div>
+  </b:panel>
+</h:form>
+</ui:define>
+</ui:composition>

@@ -3,7 +3,11 @@ package Dao;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
+import biblioteca.models.classes.Autor;
+import biblioteca.models.classes.Editora;
+import biblioteca.models.classes.Emprestimo;
 import biblioteca.models.classes.Livro;
+import biblioteca.models.classes.Pessoa;
 
 public class HibernateUtil {
 	
@@ -19,6 +23,10 @@ public class HibernateUtil {
 	// config file.
 	AnnotationConfiguration ac = new AnnotationConfiguration();
 	ac.addAnnotatedClass(Livro.class);
+	ac.addAnnotatedClass(Autor.class);
+	ac.addAnnotatedClass(Editora.class);
+	ac.addAnnotatedClass(Emprestimo.class);
+	ac.addAnnotatedClass(Pessoa.class);
 	sessionFactory = ac.configure().buildSessionFactory();
 	} catch (Throwable ex) {
 	// Log the exception.

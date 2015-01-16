@@ -1,7 +1,10 @@
 package biblioteca.controllers;
 
+
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -9,8 +12,11 @@ import Dao.DaoEmprestimo;
 import Dao.DaoEmprestimosImpl;
 import biblioteca.models.classes.Emprestimo;
 
+@ManagedBean
+@SessionScoped
 public class emprestimoController {
 	
+
 	private Emprestimo emprestimo;
 	private DataModel<Emprestimo> listaEmprestimos;
 	
@@ -30,31 +36,38 @@ public class emprestimoController {
 		
 		public String prepararAdicionarEmprestimo(){
 			emprestimo = new Emprestimo();
-			return "gerenciarEmprestimo";
+			return "form";
 		}
 		
 		public String prepararAlterarEmprestimo(){
 			emprestimo = (Emprestimo)(listaEmprestimos.getRowData());
-			return "gerenciarEmprestimo";
+			return "alterar";
 		}
 		
 		public String excluirEmprestimo(){
 			Emprestimo emprestimoTemp = (Emprestimo)(listaEmprestimos.getRowData());
 			DaoEmprestimo dao = new DaoEmprestimosImpl();
 			dao.remove(emprestimoTemp);
-			return "index";
+			return "listar";
 		}
 		
 		public String adicionarEmprestimo(){
 			DaoEmprestimo dao = new DaoEmprestimosImpl();
 			dao.save(emprestimo);
-			return "index";
+			return "listar";
 		}
 		
 		public String alterarEmprestimo(){
 			DaoEmprestimo dao = new DaoEmprestimosImpl();
 			dao.update(emprestimo);
-			return "index";
+			return "listar";
 		}
+		
+		/*public String convertTime(Date time){ 
+		    Date date = new Date(); 
+		    Format format = new SimpleDateFormat("yyyy MM dd"); 
+		    return format.format(date); 
+		}*/
 	
+		
 }

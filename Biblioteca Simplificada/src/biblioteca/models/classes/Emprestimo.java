@@ -1,6 +1,8 @@
 package biblioteca.models.classes;
 
+
 import java.util.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ public class Emprestimo {
 	private Date dataEmpresto;
 	private Date dataDevolucao;
 	
+
 	@Id
 	@GeneratedValue
 	public int getId() {
@@ -34,5 +37,8 @@ public class Emprestimo {
 	public void setDataDevolucao(Date dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
+	 
+	
+	
 	
 }

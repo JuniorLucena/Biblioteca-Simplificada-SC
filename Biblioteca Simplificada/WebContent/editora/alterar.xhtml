@@ -1,0 +1,30 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Editora</ui:define>
+<ui:define name="corpo">
+  <h:form>
+    <b:panel>
+      <f:facet name="heading">Editar Editora</f:facet>
+        <div>
+          <h:outputLabel value="Nome:" />
+          <b:inputText value="#{editoraController.editora.nome}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Tipo:" />
+          <h:selectOneMenu value="#{editoraController.editora.tipo}" styleClass="form-control">
+            <f:selectItem itemValue="1" itemLabel="Nacional" />
+            <f:selectItem itemValue="2" itemLabel="Internacional" />
+          </h:selectOneMenu>
+        </div>
+      <f:facet name="footer">
+        <b:commandButton look="success" value="Salvar" action="#{editoraController.alterarEditora}" styleClass="pull-right" />
+        <b:commandButton value="Cancelar" action="listar.xhtml?faces-redirect=true" />
+      </f:facet>
+    </b:panel>
+  </h:form>
+</ui:define>
+</ui:composition>

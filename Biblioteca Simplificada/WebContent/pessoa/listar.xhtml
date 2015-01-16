@@ -1,0 +1,44 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Pessoas</ui:define>
+<ui:define name="corpo">
+<h:form>
+  <b:panel>
+  	<f:facet name="heading">Lista de Pessoas</f:facet>
+  	
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Telefone</th>
+        
+        </tr>
+      </thead>
+      <tbody>
+        <ui:repeat var="pessoa" value="#{pessoaController.listarPessoas}">
+          <tr>
+            <td><h:outputText value="#{pessoa.nome}"/></td>
+            <td><h:outputText value="#{pessoa.cpf}"/></td>
+            <td><h:outputText value="#{pessoa.telefone}"/></td>
+            <td>
+              <b:buttonGroup size="sm">
+                <b:commandButton value="Editar" action="#{pessoaController.prepararAlterarPessoa}"/>
+                <b:commandButton value="Apagar" action="#{pessoaController.excluirPessoa}"/>
+              </b:buttonGroup>
+            </td>
+          </tr>
+        </ui:repeat>
+      </tbody>
+    </table>
+    <div class="text-right">
+	  <b:commandButton look="primary" value="Adicionar" action="#{pessoaController.prepararAdicionarPessoa}"/>
+	</div>
+  </b:panel>
+</h:form>
+</ui:define>
+</ui:composition>

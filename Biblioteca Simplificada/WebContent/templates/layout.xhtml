@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<title>Biblioteca.jsf - <ui:insert name="titulo"></ui:insert>
+	</title>
+</h:head>
+<h:body>
+	 <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Biblioteca Simplificada</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <!-- /.navbar-top-links -->
+
+        </nav>
+
+            <div class="col-lg-2 col-md-3 bootstrap-admin-col-left">
+                <div class="list-group">
+                    <a class="list-group-item" href="#{request.contextPath}/pessoa/listar.xhtml">Pessoas</a>
+                    <a class="list-group-item" href="#{request.contextPath}/autor/listar.xhtml">Autores</a>
+                    <a class="list-group-item" href="#{request.contextPath}/editora/listar.xhtml">Editoras</a>
+                    <a class="list-group-item" href="#{request.contextPath}/livro/listar.xhtml">Livros</a>
+                    <a class="list-group-item" href="#{request.contextPath}/emprestimo/listar.xhtml">Emprestimos</a>
+                </div>
+            </div>
+           <b:column col-lg="10" col-md="9">
+        <ui:insert name="corpo"></ui:insert>
+      </b:column>
+           
+	<h:outputScript name="js/bootstrap.min.js" />
+</h:body>
+</html>

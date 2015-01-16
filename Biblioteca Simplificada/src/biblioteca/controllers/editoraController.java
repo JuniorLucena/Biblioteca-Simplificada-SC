@@ -2,6 +2,9 @@ package biblioteca.controllers;
 
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -9,8 +12,11 @@ import Dao.DaoEditora;
 import Dao.DaoEditorasImpl;
 import biblioteca.models.classes.Editora;
 
+@ManagedBean
+@SessionScoped
 public class editoraController {
 	
+
 	private Editora editora;
 	private DataModel<Editora> listaEditoras;
 	
@@ -30,31 +36,33 @@ public class editoraController {
 		
 		public String prepararAdicionarEditora(){
 			editora = new Editora();
-			return "gerenciarEditora";
+			return "form";
 		}
 		
 		public String prepararAlterarEditora(){
 			editora = (Editora)(listaEditoras.getRowData());
-			return "gerenciarEditoras";
+			return "alterar";
 		}
 		
 		public String excluirEditora(){
 			Editora editoraTemp = (Editora)(listaEditoras.getRowData());
 			DaoEditora dao = new DaoEditorasImpl();
 			dao.remove(editoraTemp);
-			return "index";
+			return "listar";
 		}
 		
 		public String adicionarEditora(){
 			DaoEditora dao = new DaoEditorasImpl();
 			dao.save(editora);
-			return "index";
+			return "listar";
 		}
 		
 		public String alterarEditora(){
 			DaoEditora dao = new DaoEditorasImpl();
 			dao.update(editora);
-			return "index";
+			return "listar";
 		}
+		
+		
 	
 }

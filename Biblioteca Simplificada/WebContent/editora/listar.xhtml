@@ -1,0 +1,42 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Editoras</ui:define>
+<ui:define name="corpo">
+<h:form>
+  <b:panel>
+  	<f:facet name="heading">Lista de Editoras</f:facet>
+  	
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Tipo</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <ui:repeat var="editora" value="#{editoraController.listarEditoras}">
+          <tr>
+            <td><h:outputText value="#{editora.nome}"/></td>
+            <td><h:outputText value="#{editora.tipo}"/></td>
+            <td>
+              <b:buttonGroup size="sm">
+                <b:commandButton value="Editar" action="#{editoraController.prepararAlterarEditora}"/>
+                <b:commandButton value="Apagar" action="#{editoraController.excluirEditora}"/>
+              </b:buttonGroup>
+            </td>
+          </tr>
+        </ui:repeat>
+      </tbody>
+    </table>
+    <div class="text-right">
+	  <b:commandButton look="primary" value="Adicionar" action="#{editoraController.prepararAdicionarEditora}"/>
+	</div>
+  </b:panel>
+</h:form>
+</ui:define>
+</ui:composition>

@@ -1,0 +1,51 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Livro</ui:define>
+<ui:define name="corpo">
+  <h:form>
+    <b:panel>
+      <f:facet name="heading">Registrar Livro</f:facet>
+        <div>
+          <h:outputLabel value="Titulo:" />
+          <b:inputText value="#{livroController.livro.titulo}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Codigo de Barra:" />
+          <b:inputText value="#{livroController.livro.codigoBarra}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Estante:" />
+          <b:inputText value="#{livroController.livro.estante}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Exemplares:" />
+          <b:inputText value="#{livroController.livro.exemplares}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Disponiveis:" />
+          <b:inputText value="#{livroController.livro.disponiveis}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Ano:" />
+          <b:inputText value="#{livroController.livro.ano}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Volume:" />
+          <b:inputText value="#{livroController.livro.volume}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Edição:" />
+          <b:inputText value="#{livroController.livro.edicao}"/>
+        </div>
+      <f:facet name="footer">
+        <b:commandButton look="success" value="Salvar" action="#{livroController.adicionarLivro}" styleClass="pull-right" />
+        <b:commandButton value="Cancelar" action="listar.xhtml?faces-redirect=true" />
+      </f:facet>
+    </b:panel>
+  </h:form>
+</ui:define>
+</ui:composition>

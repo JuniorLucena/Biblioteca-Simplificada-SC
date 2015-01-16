@@ -1,0 +1,31 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Pessoa</ui:define>
+<ui:define name="corpo">
+  <h:form>
+    <b:panel>
+      <f:facet name="heading">Editar Pessoa</f:facet>
+        <div>
+          <h:outputLabel value="Nome:" />
+          <b:inputText value="#{pessoaController.pessoa.nome}"/>
+        </div>
+        <div>
+          <h:outputLabel value="CPF:" />
+          <b:inputText value="#{pessoaController.pessoa.cpf}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Telefone:" />
+          <b:inputText value="#{pessoaController.pessoa.telefone}"/>
+        </div>
+      <f:facet name="footer">
+        <b:commandButton look="success" value="Salvar" action="#{pessoaController.alterarPessoa}" styleClass="pull-right" />
+        <b:commandButton value="Cancelar" action="listar.xhtml?faces-redirect=true" />
+      </f:facet>
+    </b:panel>
+  </h:form>
+</ui:define>
+</ui:composition>

@@ -1,8 +1,10 @@
 package Dao;
 
+
 import java.util.List;
 
 import biblioteca.models.classes.Emprestimo;
+import biblioteca.models.classes.Pessoa;
 
 
 public interface DaoEmprestimo {

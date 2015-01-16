@@ -1,6 +1,7 @@
 package biblioteca.models.classes;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ public class Autor {
 	private int id;
 	private String nome;
 	private String sobrenome;
+	
 	
 	@Id
 	@GeneratedValue
@@ -32,4 +34,7 @@ public class Autor {
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
+	
+	
+	
 }

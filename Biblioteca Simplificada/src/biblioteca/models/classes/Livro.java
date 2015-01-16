@@ -5,17 +5,14 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="livros")
-
 public class Livro implements Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -126411494222246332L;
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String titulo;
 	private String codigoBarra;
@@ -25,6 +22,10 @@ public class Livro implements Serializable {
 	private int ano;
 	private int volume;
 	private int edicao;
+	
+	@ManyToMany
+	private Autor autor;
+	
 	
 	public Livro(){}
 	

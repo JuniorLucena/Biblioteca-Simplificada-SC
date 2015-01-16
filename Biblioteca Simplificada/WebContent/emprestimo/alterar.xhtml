@@ -1,0 +1,35 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Emprestimo</ui:define>
+<ui:define name="corpo">
+  <h:form>
+    <b:panel>
+      <f:facet name="heading">Editar Emprestimo</f:facet>
+      <div>
+          <h:outputLabel value="CPF:" />
+          <b:inputText value="#{emprestimoController.emprestimo.pessoa.cpf}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Livro:" />
+          <b:inputText value="#{emprestimoController.emprestimo.livro}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Data Emprestimo:" />
+          <b:inputText value="#{emprestimoController.emprestimo.dataEmpresto}"/>
+        </div>
+        <div>
+          <h:outputLabel value="Data devolução:" />
+          <b:inputText value="#{emprestimoController.emprestimo.dataDevolucao}"/>
+        </div>
+      <f:facet name="footer">
+        <b:commandButton look="success" value="Salvar" action="#{emprestimoController.alterarEmprestimo}" styleClass="pull-right" />
+        <b:commandButton value="Cancelar" action="listar.xhtml?faces-redirect=true" />
+      </f:facet>
+    </b:panel>
+  </h:form>
+</ui:define>
+</ui:composition>
