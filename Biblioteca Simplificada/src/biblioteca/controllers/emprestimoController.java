@@ -62,14 +62,5 @@ public class emprestimoController {
 		    return format.format(date); 
 		}*/
 		
-		public DataModel<Emprestimo> getListarDevolucoes() {
-			DaoEmprestimo dao = new DaoEmprestimosImpl();
-			listarDevolucoes = dao.findDevolucoes();
-			return listarDevolucoes;
-			}
-		
-	
-		
-
 		
 }
