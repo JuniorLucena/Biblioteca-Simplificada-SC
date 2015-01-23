@@ -1,0 +1,40 @@
+<ui:composition template="/templates/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:h="http://java.sun.com/jsf/html">
+<ui:define name="titulo">Cadastro de Devolucao</ui:define>
+<ui:define name="corpo">
+<h:form>
+  <b:panel>
+  	<f:facet name="heading">Lista de Devolução</f:facet>
+  	
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Pessoa - CPF</th>
+          <th>Cod de Barra - Livro</th>
+          <th>Data devolução</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+
+        <ui:repeat var="devolucao" value="#{emprestimoController.listarDevolucao}">
+          <tr>
+          	 <td><h:outputText value="#{devolucao.pessoa.cpf}"/></td>
+          	 <td><h:outputText value="#{devolucao.livro.codigoBarra}"/></td>
+            <td><h:outputText value="#{devolucao.dataDevolucao}"/></td>           
+          </tr>
+        </ui:repeat>
+      </tbody>
+    </table>
+    <div class="text-right">
+	  <b:commandButton look="primary" value="Devolver" action="#{emprestimoController.c}"/>
+	  <b:commandButton value="Cancelar" action="layout.xhtml?faces-redirect=true" />
+	</div>
+  </b:panel>
+</h:form>
+</ui:define>
+</ui:composition>

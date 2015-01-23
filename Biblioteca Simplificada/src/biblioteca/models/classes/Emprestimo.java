@@ -16,7 +16,6 @@ public class Emprestimo {
 	private Date dataEmpresto;
 	private Date dataDevolucao;
 	
-
 	@Id
 	@GeneratedValue
 	public int getId() {

@@ -16,9 +16,9 @@ import biblioteca.models.classes.Emprestimo;
 @SessionScoped
 public class emprestimoController {
 	
-
 	private Emprestimo emprestimo;
 	private DataModel<Emprestimo> listaEmprestimos;
+	private DataModel<Emprestimo> listarDevolucao;
 	
 	public DataModel<Emprestimo> getListarEmprestimos() {
 		List<Emprestimo> lista = new DaoEmprestimosImpl().list();
@@ -41,13 +41,6 @@ public class emprestimoController {
 		
 		public String prepararAlterarEmprestimo(){
 			emprestimo = (Emprestimo)(listaEmprestimos.getRowData());
-			return "alterar";
-		}
-		
-		public String excluirEmprestimo(){
-			Emprestimo emprestimoTemp = (Emprestimo)(listaEmprestimos.getRowData());
-			DaoEmprestimo dao = new DaoEmprestimosImpl();
-			dao.remove(emprestimoTemp);
 			return "listar";
 		}
 		
@@ -68,6 +61,15 @@ public class emprestimoController {
 		    Format format = new SimpleDateFormat("yyyy MM dd"); 
 		    return format.format(date); 
 		}*/
+		
+		public DataModel<Emprestimo> getListarDevolucoes() {
+			DaoEmprestimo dao = new DaoEmprestimosImpl();
+			listarDevolucoes = dao.findDevolucoes();
+			return listarDevolucoes;
+			}
+		
 	
+		
+
 		
 }
