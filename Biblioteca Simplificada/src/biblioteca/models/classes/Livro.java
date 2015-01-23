@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -13,6 +14,8 @@ import javax.persistence.Table;
 public class Livro implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String titulo;
 	private String codigoBarra;
@@ -23,33 +26,16 @@ public class Livro implements Serializable {
 	private int volume;
 	private int edicao;
 	
-	@ManyToMany
-	private Autor autor;
-	
-	
 	public Livro(){}
 	
-	public Livro(int id, String titulo, String codigoBarra, int estante,
-			int exemplares, int disponiveis, int ano, int volume, int edicao) {
-		super();
-		this.id = id;
-		this.titulo = titulo;
-		this.codigoBarra = codigoBarra;
-		this.estante = estante;
-		this.exemplares = exemplares;
-		this.disponiveis = disponiveis;
-		this.ano = ano;
-		this.volume = volume;
-		this.edicao = edicao;
-	}
-	@Id
-	@GeneratedValue
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -99,4 +85,15 @@ public class Livro implements Serializable {
 		this.edicao = edicao;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", titulo=" + titulo + ", codigoBarra="
+				+ codigoBarra + ", estante=" + estante + ", exemplares="
+				+ exemplares + ", disponiveis=" + disponiveis + ", ano=" + ano
+				+ ", volume=" + volume + ", edicao=" + edicao + ", autor="
+			 + "]";
+	}
+
+	
 }

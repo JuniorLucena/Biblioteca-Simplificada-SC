@@ -16,7 +16,14 @@ import biblioteca.models.classes.Pessoa;
 @SessionScoped
 public class pessoaController {
 
+	public pessoaController(){}
 	
+	public pessoaController(Pessoa pessoa, DataModel<Pessoa> listaPessoas) {
+		super();
+		this.pessoa = pessoa;
+		this.listaPessoas = listaPessoas;
+	}
+
 	private Pessoa pessoa;
 	private DataModel<Pessoa> listaPessoas;
 	

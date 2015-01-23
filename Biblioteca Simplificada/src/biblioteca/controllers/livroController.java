@@ -57,4 +57,8 @@ public class livroController {
 		dao.update(livro);
 		return "listar";
 	}
+	
+	public void updateQuantidadeExemplaresDisponiveis(Livro livro, int quantidade){
+		livro.setDisponiveis(quantidade);
+	}
 }

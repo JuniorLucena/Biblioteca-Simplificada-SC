@@ -11,5 +11,6 @@ public interface DaoLivros {
 	public List<Livro> list();
 	public void remove(Livro livro);
 	public void update(Livro livro);
+	public Livro findByCodigo(String codigoBarra);
  
 }
