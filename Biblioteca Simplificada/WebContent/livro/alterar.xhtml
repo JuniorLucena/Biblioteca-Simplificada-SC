@@ -37,6 +37,14 @@
           <h:outputLabel value="Edição:" />
           <b:inputText value="#{livroController.livro.edicao}"/>
         </div>
+        
+        <div>
+        	<h:outputLabel value="Editora:" />
+			<h:selectOneMenu value="#{livroController.livro.editora}" styleClass="form-control">
+				<f:selectItems value="#{editoraController.listaEditoras}" var="editora" itemLabel="#{editora.nome}" itemValue="#{editora.id}" />
+			</h:selectOneMenu>
+		</div>
+        
       <f:facet name="footer">
         <b:commandButton look="success" value="Salvar" action="#{livroController.alterarLivro}" styleClass="pull-right" />
         <b:commandButton value="Cancelar" action="listar.xhtml?faces-redirect=true" />

@@ -8,16 +8,28 @@ import org.hibernate.criterion.Restrictions;
 
 import biblioteca.models.classes.Emprestimo;
 
-public class DaoEmprestimosImpl implements DaoEmprestimo {
+public class DaoEmprestimosImpl implements DaoEmprestimo{
+	
+	DaoPessoa daoPessoa = new DaoPessoasImpl();
+	DaoLivros daoLivros = new DaoLivrosImpl();
 	
 	Session session;
 	
 	public DaoEmprestimosImpl() {
 		session = HibernateUtil.getSessionFactory().openSession();
 	}
-
+	
 	public void save(Emprestimo emprestimo) {
+		Session session = HibernateUtil.getSessionFactory().openSession();			 
+		//Pessoa pessoa = (Pessoa) session.get(Pessoa.class, emprestimo.getPessoa().getCpf() );
 		Transaction t = session.beginTransaction();
+		Long cpf = emprestimo.getPessoa().getCpf();
+		String cod = emprestimo.getLivro().getCodigoBarra();
+		//livro = daoLivros.findByCodigo(livro.getCodigoBarra());
+		int diponiveis = emprestimo.getLivro().getDisponiveis();
+		emprestimo.getLivro().setDisponiveis(diponiveis - 1);
+		
+		session.persist(emprestimo);
 		session.save(emprestimo);
 		t.commit();
 	}
@@ -26,6 +38,7 @@ public class DaoEmprestimosImpl implements DaoEmprestimo {
 		return (Emprestimo) session.load(Emprestimo.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Emprestimo> list() {		
 		return session.createCriteria(Emprestimo.class).list();
 	}

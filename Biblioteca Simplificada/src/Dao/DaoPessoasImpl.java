@@ -3,7 +3,7 @@ package Dao;
 import org.hibernate.Transaction;
 import java.util.List;
 import org.hibernate.Session;
-
+import org.hibernate.criterion.Restrictions;
 import biblioteca.models.classes.Pessoa;
 
 public class DaoPessoasImpl implements DaoPessoa {
@@ -18,6 +18,12 @@ public class DaoPessoasImpl implements DaoPessoa {
 	public Pessoa getPessoa(long id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		return (Pessoa) session.load(Pessoa.class, id);
+	}
+
+	public Pessoa findByCpf(Long cpf) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		return (Pessoa) session.createCriteria(Pessoa.class)
+				.add(Restrictions.eq("cpf", cpf)).uniqueResult();
 	}
 
 	public List<Pessoa> list() {

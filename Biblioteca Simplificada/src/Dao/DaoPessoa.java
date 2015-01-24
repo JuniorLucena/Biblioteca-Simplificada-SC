@@ -10,4 +10,5 @@ public interface DaoPessoa {
 	public List<Pessoa> list();
 	public void remove(Pessoa pessoa);
 	public void update(Pessoa pessoa);
+	public Pessoa findByCpf(Long cpf);
 }

@@ -1,45 +1,39 @@
 <ui:composition template="/templates/layout.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:b="http://bootsfaces.net/ui"
-    xmlns:f="http://java.sun.com/jsf/core"  
-    xmlns:h="http://java.sun.com/jsf/html">
     
-<ui:define name="titulo">Cadastro de Emprestimo</ui:define>
-<ui:define name="corpo">
-  <h:form>
-    <b:panel>
-      <f:facet name="heading">Registrar Emprestimo</f:facet>
-      <div>
-          <h:outputLabel value="Pessoa:" />
-  	<h:selectOneMenu id="pessoas">  
-    	<f:selectItem itemValue="Selecione..." itemLabel="Selecione..." />  
-    	<f:selectItems value="#{pessoaController.listarPessoas}" itemValue="#{pessoas.id}" />  
-	</h:selectOneMenu> 
-	</div>
-	<div>
-          <h:outputLabel value="Livro:" />
-       	<h:selectOneMenu id="livros">  
-    		<f:selectItem itemValue="Selecione..." itemLabel="Selecione..." />  
-    		<f:selectItems value="#{livroController.listarLivros}" itemValue="#{livros.id}" />  
-		</h:selectOneMenu>
-	</div>
-        <div>
-          <h:outputLabel value="Data Emprestimo:" />
-         <b:inputText  value="#{emprestimoController.emprestimo.dataEmpresto}"
-  converter="javax.faces.DateTime"/>
-        </div>
-        <div>
-          <h:outputLabel value="Data devolução:" />
-          <b:inputText  value="#{emprestimoController.emprestimo.dataDevolucao}"
-  converter="javax.faces.DateTime"/>
-        </div>
-               
-      <f:facet name="footer">
-        <b:commandButton look="success" value="Salvar" action="#{emprestimoController.adicionarEmprestimo}" styleClass="pull-right" />
-        <b:commandButton value="Cancelar" action="listar.xhtml?faces-redirect=true" />
-      </f:facet>
-    </b:panel>
-  </h:form>
-</ui:define>
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+	<ui:define name="titulo">Cadastro de Emprestimo</ui:define>
+	<ui:define name="corpo">
+		<h:form>
+			<b:panel>
+				<f:facet name="heading">Registrar Emprestimo</f:facet>
+				<div>
+					<h:outputLabel value="CPF:" />
+					<b:inputText value="#{emprestimoController.emprestimo.pessoa.cpf}">
+					</b:inputText>
+				</div>
+				<div>
+					<h:outputLabel value="Livro" />
+					<b:inputText
+						value="#{emprestimoController.emprestimo.livro.codigoBarra}" />
+				</div>				
+				<div>
+					<!-- <h:outputLabel value="Data devolução:" />
+          <b:inputText  value="#{emprestimoController.emprestimo.dataDevolucao}">
+                   <f:convertDateTime pattern="dd/MM/yyyy" />
+          </b:inputText> -->
+				</div>
+				<f:facet name="footer">
+					<b:commandButton look="success" value="Salvar"
+						action="#{emprestimoController.adicionarEmprestimo}"
+						styleClass="pull-right" />
+					<b:commandButton value="Cancelar"
+						action="listar.xhtml?faces-redirect=true" />
+				</f:facet>
+			</b:panel>
+		</h:form>
+	</ui:define>
 </ui:composition>

@@ -9,10 +9,10 @@
   <h:form>
     <b:panel look="danger">
       <f:facet name="heading">Apagar Livro</f:facet>
-      Deseja realmente apagar a livro #{livroBean.livro.nome}? Essa ação não pode ser desfeita.
+      Deseja realmente apagar a livro #{livroController.livro.nome}? Essa ação não pode ser desfeita.
       <f:facet name="footer">
         <b:commandButton value="Cancelar" action="listar.xhtml" />
-        <b:commandButton look="success" value="Apagar" action="#{livroBean.apagar}" styleClass="pull-right" />
+        <b:commandButton look="success" value="Apagar" action="#{livroController.excluirLivro}" styleClass="pull-right" />
       </f:facet>
     </b:panel>
   </h:form>

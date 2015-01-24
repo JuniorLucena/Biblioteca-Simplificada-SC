@@ -12,7 +12,7 @@
       Deseja realmente apagar a editora #{editoraBean.editora.nome}? Essa ação não pode ser desfeita.
       <f:facet name="footer">
         <b:commandButton value="Cancelar" action="listar.xhtml" />
-        <b:commandButton look="success" value="Apagar" action="#{editoraBean.apagar}" styleClass="pull-right" />
+        <b:commandButton look="success" value="Apagar" action="#{editoraController.excluirEditora}" styleClass="pull-right" />
       </f:facet>
     </b:panel>
   </h:form>
