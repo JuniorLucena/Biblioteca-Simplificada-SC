@@ -4,8 +4,10 @@ package biblioteca.controllers;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
@@ -26,25 +28,28 @@ import biblioteca.models.classes.Pessoa;
 @ManagedBean
 @SessionScoped
 public class emprestimoController {
-   
+
 	private DaoPessoa daoPessoa = new DaoPessoasImpl();
 	private DaoLivros daoLivro = new DaoLivrosImpl();
-	public Pessoa pessoa;
-	public Livro livro;
-		
+
 	private Emprestimo emprestimo;
 	private DataModel<Emprestimo> listaEmprestimos;
 	private DataModel<Emprestimo> listarDevolucao;
-	
+
 	public emprestimoController() {}
-	
+
 
 	public DataModel<Emprestimo> getListarEmprestimos() {
-		List<Emprestimo> lista = new DaoEmprestimosImpl().list();
+		List<Emprestimo> lista = new DaoEmprestimosImpl().findEmprestimos();
 		listaEmprestimos = new ListDataModel<Emprestimo>(lista);
 		return listaEmprestimos;
-		}
-	
+	}
+
+	public DataModel<Emprestimo> getListarDevolucao(){
+		List<Emprestimo> lista = new DaoEmprestimosImpl().findDevolucoes();
+		listarDevolucao = new ListDataModel<Emprestimo>(lista);
+		return listarDevolucao;
+	}
 	
 	public Emprestimo getEmprestimo() {
 		return emprestimo;
@@ -72,56 +77,77 @@ public class emprestimoController {
 	}
 
 	public String adicionarEmprestimo(){
+
 		DaoEmprestimo dao = new DaoEmprestimosImpl();		
 		Date dataEmprestimo = new Date();
+
+		Pessoa pessoa = daoPessoa.findByCpf(emprestimo.getPessoa().getCpf());
+		Livro livro = daoLivro.findByCodigo(emprestimo.getLivro().getCodigoBarra());
+
+		if(pessoa.getCpf() != null){
+			if(livro.getCodigoBarra() != null){
+				emprestimo.setPessoa(daoPessoa.findByCpf(emprestimo.getPessoa().getCpf()));
+				emprestimo.setLivro(daoLivro.findByCodigo(emprestimo.getLivro().getCodigoBarra()));
+				emprestimo.setDataEmpresto(dataEmprestimo);				
+				dao.save(emprestimo);
+				int diponiveis = emprestimo.getLivro().getDisponiveis();
+				emprestimo.getLivro().setDisponiveis(diponiveis - 1);
 				
-		emprestimo.setDataEmpresto(dataEmprestimo);
-								
-		dao.save(emprestimo);
+				FacesContext context = FacesContext.getCurrentInstance();
+
+				FacesMessage mensagem = new FacesMessage(
+						FacesMessage.SEVERITY_INFO, "Emprestimo efetuado","com sucesso");
+				context.addMessage(null, mensagem);
+
+			}else{
+				FacesContext context = FacesContext.getCurrentInstance();
+
+				FacesMessage mensagem = new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, "Emprestimo não efetuado","com sucesso");
+				context.addMessage(null, mensagem);
+
+			}
+
+		}
 		return "listar";
 	}
-		
+
 	public String alterarEmprestimo(){
 		DaoEmprestimo dao = new DaoEmprestimosImpl();
 		dao.update(emprestimo);
 		return "listar";
 	}
-	
-	
+
+
 	public DataModel<Emprestimo> getEmprestados() {
 		DaoEmprestimo dao = new DaoEmprestimosImpl();						
 		return new ListDataModel<Emprestimo>(dao.findEmprestimos());  
 	}
+
+	public String prepararDevolverEmprestimo(){
+		//emprestimo = new Emprestimo();
+		return "formDevolucao";
+	}
+	
 	
 	public DataModel<Emprestimo> realizarDevolucao() {
-		DaoEmprestimo dao = new DaoEmprestimosImpl();						
+		DaoEmprestimo dao = new DaoEmprestimosImpl();
+		Long cpf = emprestimo.getPessoa().getCpf();
+		String codigoBarra = emprestimo.getLivro().getCodigoBarra();
+		
+		Date dataDevolucao = new Date();
+		Emprestimo emp = dao.findByIdentificador(cpf, codigoBarra);
+		((List<Emprestimo>) listarDevolucao).add(emp);
+		emprestimo.setDataDevolucao(dataDevolucao);
+		int diponiveis = emprestimo.getLivro().getDisponiveis();
+		emprestimo.getLivro().setDisponiveis(diponiveis + 1);
+		
 		return new ListDataModel<Emprestimo>(dao.findDevolucoes());  
 	}
-	
-	
-	
-	
-	/*public Emprestimo findByIdentificador(long cpf, String codigoBarra){
-		for (Emprestimo emprestimos : listaEmprestimos) {
 
-			if(emprestimos.getPessoa().getCpf()== cpf){
 
-				if(emprestimos.getLivro().getCodigoBarra().equals(codigoBarra)){
-					return emprestimos;
-				}else{
-					//System.out.println("O cpf"+cpf+"nï¿½o possui o livro"+codigoBarra+"Emprestado");
-				}
-			}
-
-		}
-
-		
-		/*public String convertTime(Date time){ 
-		    Date date = new Date(); 
-		    Format format = new SimpleDateFormat("yyyy MM dd"); 
-		    return format.format(date); 
-		}*/
-		
 	
-	}
-	
+
+
+}
+

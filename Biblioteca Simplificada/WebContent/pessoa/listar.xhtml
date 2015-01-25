@@ -9,8 +9,10 @@
 <h:form>
   <b:panel>
   	<f:facet name="heading">Lista de Pessoas</f:facet>
-  	
-    <table class="table table-striped">
+				<h:messages showDetail="true" showSummary="true"
+					errorStyle="color: red" infoStyle="color: green"
+					warnStyle="color: orange" fatalStyle="color: gray" />
+				<table class="table table-striped">
       <thead>
         <tr>
           <th>Nome</th>

@@ -12,5 +12,4 @@ public interface DaoLivros {
 	public void remove(Livro livro);
 	public void update(Livro livro);
 	public Livro findByCodigo(String codigoBarra);
- 
 }

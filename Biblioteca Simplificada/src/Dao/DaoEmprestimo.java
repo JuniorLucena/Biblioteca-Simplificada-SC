@@ -17,4 +17,6 @@ public interface DaoEmprestimo {
 	public List<Emprestimo> findEmprestimos();
 	
 	public List<Emprestimo> findDevolucoes();
+	
+	public Emprestimo findByIdentificador(Long cpf, String codigoBarra);
 }

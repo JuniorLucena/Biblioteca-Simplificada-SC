@@ -9,7 +9,10 @@
 <h:form>
   <b:panel>
   	<f:facet name="heading">Lista de Emprestimos</f:facet>
-  	
+				<h:messages showDetail="true" showSummary="true"
+				errorStyle="color: red" infoStyle="color: green"
+				warnStyle="color: orange" fatalStyle="color: gray"/>
+				
     <table class="table table-striped">
       <thead>
         <tr>
@@ -29,7 +32,7 @@
           	 <td><h:outputText value="#{emprestimo.pessoa.cpf}"/></td>
           	 <td><h:outputText value="#{emprestimo.livro.codigoBarra}"/></td>
             <td><h:outputText value="#{emprestimo.dataEmpresto}"/></td>
-            <td><h:outputText value="#{emprestimo.dataDevolucao}"/></td>           
+            <td><h:outputText value="#{emprestimo.livro.disponiveis}"/></td>           
             <td>
               <b:buttonGroup size="sm">
                 <b:commandButton value="Editar" action="#{emprestimoController.alterarEmprestimo}"/>
@@ -41,7 +44,8 @@
       </tbody>
     </table>
     <div class="text-right">
-	  <b:commandButton look="primary" value="Adicionar" action="#{emprestimoController.prepararAdicionarEmprestimo}"/>
+	  <b:commandButton look="primary" value="Emprestar" action="#{emprestimoController.prepararAdicionarEmprestimo}"/>
+	  
 	</div>
   </b:panel>
 </h:form>

@@ -23,9 +23,7 @@ public class Emprestimo {
 	private Date dataEmpresto;
 	private Date dataDevolucao;
 	
-	//@Transient
-	String dataString;
-	
+		
 	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
 	@JoinColumn(name="pessoa_id")
 	private Pessoa pessoa = new Pessoa();
@@ -38,13 +36,7 @@ public class Emprestimo {
 		
 	}
 		
-	public String getDataString() {
-		return dataString;
-	}
-	public void setDataString(String dataString) {
-		this.dataString = dataString;
-	}
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId() {
@@ -66,14 +58,14 @@ public class Emprestimo {
 	public void setDataDevolucao(Date dataDevolucao) {
 		this.dataDevolucao = dataDevolucao;
 	}
-	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+	@ManyToOne()
 	public Pessoa getPessoa() {
 		return pessoa;
 	}
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
-	@ManyToOne(cascade={CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+	@ManyToOne()
 	public Livro getLivro() {
 		return livro;
 	}
@@ -81,49 +73,12 @@ public class Emprestimo {
 		this.livro = livro;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Emprestimo other = (Emprestimo) obj;
-		if (dataDevolucao == null) {
-			if (other.dataDevolucao != null)
-				return false;
-		} else if (!dataDevolucao.equals(other.dataDevolucao))
-			return false;
-		if (dataEmpresto == null) {
-			if (other.dataEmpresto != null)
-				return false;
-		} else if (!dataEmpresto.equals(other.dataEmpresto))
-			return false;
-		if (dataString == null) {
-			if (other.dataString != null)
-				return false;
-		} else if (!dataString.equals(other.dataString))
-			return false;
-		if (id != other.id)
-			return false;
-		if (livro == null) {
-			if (other.livro != null)
-				return false;
-		} else if (!livro.equals(other.livro))
-			return false;
-		if (pessoa == null) {
-			if (other.pessoa != null)
-				return false;
-		} else if (!pessoa.equals(other.pessoa))
-			return false;
-		return true;
-	}
+	
 	@Override
 	public String toString() {
 		return "Emprestimo [id=" + id + ", dataEmpresto=" + dataEmpresto
 				+ ", dataDevolucao=" + dataDevolucao + ", pessoa=" + pessoa
-				+ ", livro=" + livro + ", dataString=" + dataString + "]";
+				+ ", livro=" + livro + ", dataString=" + "]";
 	}
 	
 	

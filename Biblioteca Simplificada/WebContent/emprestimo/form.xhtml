@@ -10,6 +10,9 @@
 		<h:form>
 			<b:panel>
 				<f:facet name="heading">Registrar Emprestimo</f:facet>
+				<h:messages showDetail="true" showSummary="true"
+				errorStyle="color: red" infoStyle="color: green"
+				warnStyle="color: orange" fatalStyle="color: gray"/>
 				<div>
 					<h:outputLabel value="CPF:" />
 					<b:inputText value="#{emprestimoController.emprestimo.pessoa.cpf}">
@@ -17,6 +20,7 @@
 				</div>
 				<div>
 					<h:outputLabel value="Livro" />
+					
 					<b:inputText
 						value="#{emprestimoController.emprestimo.livro.codigoBarra}" />
 				</div>				

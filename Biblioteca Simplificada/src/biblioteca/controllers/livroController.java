@@ -58,7 +58,7 @@ public class livroController {
 		return "listar";
 	}
 	
-	public void updateQuantidadeExemplaresDisponiveis(Livro livro, int quantidade){
+	public static void updateQuantidadeExemplaresDisponiveis(Livro livro, int quantidade){
 		livro.setDisponiveis(quantidade);
 	}
 }

@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import biblioteca.models.classes.Emprestimo;
+import biblioteca.models.classes.Pessoa;
 
 public class DaoEmprestimosImpl implements DaoEmprestimo{
 	
@@ -23,12 +24,6 @@ public class DaoEmprestimosImpl implements DaoEmprestimo{
 		Session session = HibernateUtil.getSessionFactory().openSession();			 
 		//Pessoa pessoa = (Pessoa) session.get(Pessoa.class, emprestimo.getPessoa().getCpf() );
 		Transaction t = session.beginTransaction();
-		Long cpf = emprestimo.getPessoa().getCpf();
-		String cod = emprestimo.getLivro().getCodigoBarra();
-		//livro = daoLivros.findByCodigo(livro.getCodigoBarra());
-		int diponiveis = emprestimo.getLivro().getDisponiveis();
-		emprestimo.getLivro().setDisponiveis(diponiveis - 1);
-		
 		session.persist(emprestimo);
 		session.save(emprestimo);
 		t.commit();
@@ -69,6 +64,13 @@ public class DaoEmprestimosImpl implements DaoEmprestimo{
 		return session.createCriteria(Emprestimo.class)
 				.add(Restrictions.isNull("dataDevolucao"))
 				.list();
+	}
+	
+	public Emprestimo findByIdentificador(Long cpf, String codigoBarra) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		return (Emprestimo) session.createCriteria(Emprestimo.class)
+				.add(Restrictions.eq("cpf", cpf))
+				.add(Restrictions.eq(codigoBarra, codigoBarra));
 	}
 
 }
