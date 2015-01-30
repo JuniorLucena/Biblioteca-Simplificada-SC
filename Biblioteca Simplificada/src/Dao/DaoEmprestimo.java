@@ -13,10 +13,8 @@ public interface DaoEmprestimo {
 	public List<Emprestimo> list();
 	public void remove(Emprestimo emprestimo);
 	public void update(Emprestimo emprestimo);
-	
-	public List<Emprestimo> findEmprestimos();
-	
+	public List<Emprestimo> findEmprestimos();	
 	public List<Emprestimo> findDevolucoes();
 	
-	public Emprestimo findByIdentificador(Long cpf, String codigoBarra);
+	public List<Emprestimo> findByIdentificador(Long cpf, String codigoBarra);
 }

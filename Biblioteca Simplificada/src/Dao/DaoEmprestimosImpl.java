@@ -66,11 +66,12 @@ public class DaoEmprestimosImpl implements DaoEmprestimo{
 				.list();
 	}
 	
-	public Emprestimo findByIdentificador(Long cpf, String codigoBarra) {
+	public List<Emprestimo> findByIdentificador(Long cpf, String codigoBarra) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		return (Emprestimo) session.createCriteria(Emprestimo.class)
-				.add(Restrictions.eq("cpf", cpf))
-				.add(Restrictions.eq(codigoBarra, codigoBarra));
+		List<Emprestimo> lista =  session.createQuery("Select e FROM Emprestimo as e where  e.pessoa.cpf = " + cpf + " AND e.livro.codigoBarra like " + codigoBarra )
+				.list();
+		return lista;
+		
 	}
 
 }
